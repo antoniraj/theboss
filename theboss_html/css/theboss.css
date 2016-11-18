@@ -1,0 +1,174 @@
+.login #loginForm{
+  border: 3px solid #da5045;
+  border-radius: 10px;
+}
+.login #loginForm .login-inner{
+  padding: 20px 30px;
+}
+.login #loginForm .btn{
+  border-radius: 0;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+body{
+  padding-top: 80px;
+}
+.navbar-custom {
+  background: #cb3b30;
+  font-weight: 700;
+  border: none;
+}
+.navbar-custom a:focus {
+  outline: none;
+}
+.navbar-custom .navbar-brand {
+  color: white;
+}
+.navbar-custom .navbar-brand:hover,
+.navbar-custom .navbar-brand:focus,
+.navbar-custom .navbar-brand:active,
+.navbar-custom .navbar-brand.active {
+  color: white;
+}
+.navbar-custom .navbar-nav {
+  letter-spacing: 1px;
+}
+.navbar-custom .navbar-nav li a {
+  color: white;
+}
+.navbar-custom .navbar-nav li a:hover {
+  color: #18BC9C;
+  outline: none;
+}
+.navbar-custom .navbar-nav li a:focus,
+.navbar-custom .navbar-nav li a:active {
+  color: white;
+}
+.navbar-custom .navbar-nav li.active a {
+  color: white;
+  background: #18BC9C;
+}
+.navbar-custom .navbar-nav li.active a:hover,
+.navbar-custom .navbar-nav li.active a:focus,
+.navbar-custom .navbar-nav li.active a:active {
+  color: white;
+  background: #18BC9C;
+}
+.navbar-custom .navbar-toggle {
+  color: white;
+  text-transform: uppercase;
+  font-size: 10px;
+  border-color: white;
+}
+.navbar-custom .navbar-toggle:hover,
+.navbar-custom .navbar-toggle:focus {
+  background-color: #18BC9C;
+  color: white;
+  border-color: #18BC9C;
+}
+@media (min-width: 768px) {
+  .navbar-custom {
+    padding: 10px 0;
+    -webkit-transition: padding 0.3s;
+    -moz-transition: padding 0.3s;
+    transition: padding 0.3s;
+  }
+  .navbar-custom .navbar-brand {
+    font-size: 2em;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+  }
+  .navbar-custom.affix {
+    padding: 10px 0;
+  }
+  .navbar-custom.affix .navbar-brand {
+    font-size: 1.5em;
+  }
+}
+/************--navigation--***************/
+.theboss-nav.navbar-default{
+  background-color: #da5045;
+  border-color: #cb3a2f;
+}
+.theboss-nav.navbar-default .navbar-nav > li > a{
+  color: #fff;
+  font-weight: bold;
+}
+
+.theboss-nav.navbar-default i{
+  display: block;
+  color: #000;
+  text-align: center;
+  font-size: 30px;
+}
+.theboss-nav.navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover,
+.theboss-nav.navbar-default .navbar-nav > li > a:focus i, .navbar-default .navbar-nav > li > a:hover i{
+  background-color:#000;
+  color:#fff;
+}
+.theboss-nav .navbar-nav > li > a{
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+.theboss-nav .navbar-form .form-control{
+  background-color: #c73529;
+   border: 1px solid #c73529;
+}
+
+.theboss-nav .navbar-right.navbar-nav > li > a:focus, .theboss-nav .navbar-right.navbar-nav > li > a:hover, .theboss-nav .navbar-right.navbar-nav > li > a:focus i, .theboss-nav .navbar-right.navbar-nav > li > a:hover i{
+  background-color:transparent;
+}
+.panel-danger > .panel-heading{
+  background-color: #cb3b2f;
+  border-color: #cb3b2f;
+  color: #fff;
+}
+.panel{
+  border-radius: 8px;
+}
+.panel-danger {
+    border-color: #cb3b2f;
+    border-width: 2px;
+}
+.panel-title{
+  font-weight: bold;
+  font-size: 22px;
+}
+.panel-heading {
+  padding: 6px 15px;
+}
+.msg-panel dl dd{
+  border-bottom:1px dashed #ccc;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.msg-panel h3{
+  margin:0;
+  margin-bottom: 10px;
+}
+.msg-panel h3 a{
+  color: #9d0c00;
+}
+.msg-panel ul li a{
+  color: #666;
+  font-weight: normal;
+}
+.msg-panel ul li{
+  border-left: 1px solid #aaa;
+}
+.msg-panel ul li:first-child{
+  border-left:none;
+}
+footer{
+  background: #d6d6d6;
+  padding: 10px 0;
+  font-size: 13px;
+}
+footer p, footer ul{
+  margin:0;
+}
+footer a{
+  color: #c7201e;
+}
