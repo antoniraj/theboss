@@ -15,8 +15,8 @@ defined('SHOW_DEBUG_BACKTRACE') OR define('SHOW_DEBUG_BACKTRACE', TRUE);
 
 
 defined('USER_TYPE_ADMIN') OR define('USER_TYPE_ADMIN', 1);
-defined('USER_TYPE_SITEOWNER') OR define('USER_TYPE_SITEOWNER', 2);
-defined('USER_TYPE_TRAVELLER') OR define('USER_TYPE_TRAVELLER', 3);
+defined('USER_TYPE_STAFF') OR define('USER_TYPE_STAFF', 2);
+
 
 /*
 |--------------------------------------------------------------------------

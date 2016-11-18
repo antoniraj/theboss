@@ -34,8 +34,7 @@ class Login_model extends CI_Model {
         $return = [];
         $this->db->select('*')
                 ->from($table_name)
-                ->where('email=', $param['email'])
-                ->or_where('mobile',$param['email'])
+                ->where('email=', $param['email'])               
                 ->where('password=', $param['password'])
                 ->where('status=', 'Active');              
               
