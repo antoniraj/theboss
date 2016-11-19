@@ -17,6 +17,7 @@ class Dashboard extends CI_Controller {
      * */
     function __construct() {
         parent::__construct();
+        $this->load->model('news_model');
        
     }
 
@@ -29,10 +30,11 @@ class Dashboard extends CI_Controller {
         
         //$this->template->title($this->lang->line('signin'));
         //$this->template->build('agent_view/signin');
-        //$this->template->title($this->lang->line('dashboard'));        
+        //$this->template->title($this->lang->line('dashboard')); 
+        $data['results'] = $this->news_model->get_all_ceo_message();       
        
          $this->load->view('layout/header');
-        $this->load->view('dashboard');
+        $this->load->view('dashboard',$data);
         $this->load->view('layout/footer');
     }
 

@@ -23,7 +23,7 @@
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
                 <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand" href="index.html">The Boss (Best Of Staffing Specifix)</a>
+            <a class="navbar-brand" href="<?php echo base_url();?>dashboard">The Boss (Best Of Staffing Specifix)</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -48,7 +48,7 @@
   <nav class="navbar navbar-default theboss-nav">
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
+    <!--   <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
@@ -56,7 +56,7 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="#">Brand</a>
-      </div>
+      </div> -->
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="navbar-collapse-1">
@@ -69,10 +69,10 @@
           <li><a href="#">
             <i class="fa fa-users" aria-hidden="true"></i>
             Staff</a></li>
-          <li><a href="#">
+          <li><a href="<?php echo base_url();?>/news/manage">
             <i class="fa fa-calendar" aria-hidden="true"></i>
             Events</a></li>
-          <li><a href="#">
+          <li><a href="<?php echo base_url();?>/news/manage_ceo">
             <i class="fa fa-comments" aria-hidden="true"></i>
             Messages From the CEO</a></li>
         </ul>
@@ -105,3 +105,23 @@
 </div>
 
 <div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+          <h3 class="panel-title">Quick Links</h3>
+        </div>
+        <div class="panel-body">
+          <ul>
+            <li><a href="https://staffingspecifix.tsheets.com/page/login" target="_blank">Enter Your Hours</a></li>
+           <li><a href="https://www.epaystubaccess.com/acctmgr.asp?pgid=browser&mdid=scr1&verid=eng" target="_blank">View Your Paystub(s)</a></li>
+          <li><a href="https://staffingspecifixinc.igloocommunities.com/events/employee_vacations" target="_blank">Request vacation</a></li>
+          <li><a href="#" target="_blank">Submit expenses</a></li>
+          <li><a href="#" target="_blank">Update your profile</a></li>
+          <li><a href="https://gordg.aviontego.com/RDWeb/Pages/en-US/login.aspx?ReturnUrl=default.aspx" target="_blank">Avionte</a></li>
+          
+          </ul>
+        </div>
+      </div><!--panel-->
+    </div>
+    <div class="col-md-8">
