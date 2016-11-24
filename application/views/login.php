@@ -35,7 +35,7 @@
               <input class="form-control" type="email" id="email" name="email" name='' placeholder="Email Address"/>          
             </div>
             <div class="form-group input-group">
-              <span class="input-group-addon"><i class="glyphicon glyphid="password" name="password"icon-lock"></i></span>
+              <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
               <input class="form-control" type="password" id="password" name="password" placeholder="Password"/>     
             </div>
             <div class="form-group text-center">

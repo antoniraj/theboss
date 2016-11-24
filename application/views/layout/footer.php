@@ -1,5 +1,39 @@
     </div>
   </div>
+  <section calss="employee">
+    <div class="container">
+      <div class="employee-inner">
+        <h3>Recent employee activity</h3>
+        <ul class="list-inline list-unstyled">
+          <li>
+            <img src="<?php echo base_url();?>assets/images/photo.jpg" class="img-circle img-responsve">
+            <h5>Afernandez</h5>
+          </li>
+          <li>
+            <img src="<?php echo base_url();?>assets/images/photo.jpg" class="img-circle img-responsve">
+            <h5>Afernandez</h5>
+          </li>
+          <li>
+            <img src="<?php echo base_url();?>assets/images/photo.jpg" class="img-circle img-responsve">
+            <h5>Afernandez</h5>
+          </li>
+          <li>
+            <img src="<?php echo base_url();?>assets/images/photo.jpg" class="img-circle img-responsve">
+            <h5>Afernandez</h5>
+          </li>
+          <li>
+            <img src="<?php echo base_url();?>assets/images/photo.jpg" class="img-circle img-responsve">
+            <h5>Employee Name</h5>
+          </li>
+          <li>
+            <img src="<?php echo base_url();?>assets/images/photo.jpg" class="img-circle img-responsve">
+            <h5>jlopez</h5>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </section>
 </div>
 <footer>
   <div class="container">
@@ -16,12 +50,6 @@
     </div>
   </div>
 </footer>
-<?php
-   $header_js = array(
-            'js/jquery.min',
-            'js/bootstrap.min',           
-        );
-        add_js_file($header_js);
-?>
+
 </body>
 </html>

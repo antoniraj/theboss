@@ -12,8 +12,22 @@
      
   );
   add_css_file($header_css);
-  ?>
+?>
 
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
+<?php 
+   $header_js = array(
+            'js/jquery.min',
+            'js/bootstrap.min',           
+        );
+        add_js_file($header_js);
+?>
+<script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.12.3.js">
+  </script>
+  <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js">
+  </script>
+  <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
 </head>
 <body>
   <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
@@ -63,10 +77,10 @@
         <ul class="nav navbar-nav">
           <li><a href="#"><i class="fa fa-bullseye" aria-hidden="true"></i>
             Departments</a></li>
-          <li><a href="#">
+          <li><a href="<?php echo base_url();?>/location/manage">
             <i class="fa fa-globe" aria-hidden="true"></i>
             Locations</a></li>
-          <li><a href="#">
+            <li><a href="<?php echo base_url();?>/staff/manage">
             <i class="fa fa-users" aria-hidden="true"></i>
             Staff</a></li>
           <li><a href="<?php echo base_url();?>/news/manage">
@@ -89,13 +103,13 @@
         </form>
         <ul class="nav navbar-nav navbar-right" style="margin-top:1%;">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User name <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $this->session->userdata('d_name'); ?><span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">Separated link</a></li>
+              <li><a href="#">Profile</a></li>
+              <li><a href="#">Change Password</a></li>
+              <li><a href="<?php echo base_url();?>login/logout">Logout</a></li>
+             <!--  <li role="separator" class="divider"></li>
+              <li><a href="#">Separated link</a></li> -->
             </ul>
           </li>
         </ul>
@@ -112,7 +126,7 @@
           <h3 class="panel-title">Quick Links</h3>
         </div>
         <div class="panel-body">
-          <ul>
+          <ul class="quick_links">
             <li><a href="https://staffingspecifix.tsheets.com/page/login" target="_blank">Enter Your Hours</a></li>
            <li><a href="https://www.epaystubaccess.com/acctmgr.asp?pgid=browser&mdid=scr1&verid=eng" target="_blank">View Your Paystub(s)</a></li>
           <li><a href="https://staffingspecifixinc.igloocommunities.com/events/employee_vacations" target="_blank">Request vacation</a></li>

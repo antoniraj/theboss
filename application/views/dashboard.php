@@ -14,7 +14,7 @@
                 <ul class="list-unstyled list-inline">
                   <li><a href="#"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> 0 Views</a></li>
                   <li><a href="#"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> 0 Comments</a></li>
-                  <li><a href="<?php echo base_url();?>news/view/<?php echo $value->id;?>/1"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> View</a></li>
+                 
                   
                 </ul>
             </dd>

@@ -29,7 +29,8 @@ class Login extends CI_Controller{
             $result = ($result['data']) ? $result['data'][0] : '';
 
            if (!empty($result)) {
-                $session_data['id'] = $result->id;               
+                $session_data['id'] = $result->id;
+                $session_data['d_name'] = $result->d_name;                
                 $session_data['email'] = $result->email;              
                 $session_data['user_type'] = $result->user_type;              
                 $this->session->set_userdata($session_data);
@@ -44,6 +45,7 @@ class Login extends CI_Controller{
             } else {
                 $this->session->set_flashdata('error', $this->lang->line('login_invalid'));
             }
+            echo 'dddd';
 
     }
     
@@ -69,6 +71,23 @@ class Login extends CI_Controller{
 	    $this->load->view('enduser/headernew',$data);
         $this->load->view('login');
         $this->load->view('enduser/footernew');
+    }
+
+    /**
+     * Logs the user out
+     * @return void
+     * @access public
+     */
+    public function logout() {
+        $this->sess_expiration = 0;
+        $this->session->unset_userdata('id');
+        $this->session->unset_userdata('email');
+        $this->session->unset_userdata('d_name');
+        $this->session->unset_userdata('user_type');
+        //$this->session->sess_destroy();
+
+        $this->session->set_flashdata('success', $this->lang->line('logout_success'));
+        redirect('login', 'refresh');
     }
     
     
