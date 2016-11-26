@@ -7,6 +7,7 @@
   <div class="panel-body msg-panel">
    <!-- form -->
    <form method="post" id="frmAddNews" name="frmAddNews" action="">
+
     <div class="form-group">
       <label for="exampleInputEmail1">First Name</label>
       <input required type="text" value="<?php echo @$first_name;?>" id="first_name" name="first_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">

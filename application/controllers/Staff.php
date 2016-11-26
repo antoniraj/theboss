@@ -37,28 +37,10 @@ class Staff extends CI_Controller {
             $data['fax'] = $this->input->post('fax');
             $data['created_by'] = $this->session->userdata('id'); 
 
-            $address = $data['location']; // Google HQ
-            $prepAddr = str_replace(' ','+',$address);
-            $geocode=file_get_contents('https://maps.google.com/maps/api/geocode/json?address='.$prepAddr.'&sensor=false');
-            $output= json_decode($geocode);
-           // echo '<pre>'; print_r($_POST);print_r($output);exit;
-            $latitude = $output->results[0]->geometry->location->lat;
-            $longitude = $output->results[0]->geometry->location->lng;
-
-            $data['latitude'] = $latitude;
-            $data['longitude'] = $longitude;
-
-            $result = $this->location_model->add_location($data);
-            $this->session->set_flashdata('message', 'Location has beed saved successfully!');
-            redirect('location/manage/', $result);
-        }
-
-
-        $data['id'] = '';
-        $data['title'] = '';        
-        $data['location'] = '';
-        $data['office'] = '';
-        $data['fax'] = '';
+            
+        }     
+        $data['gender'] = '';
+         $data['id'] = '';
         $data['text'] = 'Add';
        
         $this->load->view('layout/header');

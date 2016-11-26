@@ -19,7 +19,8 @@
 <?php 
    $header_js = array(
             'js/jquery.min',
-            'js/bootstrap.min',           
+            'js/bootstrap.min',
+            'js/app',             
         );
         add_js_file($header_js);
 ?>
