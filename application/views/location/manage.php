@@ -24,10 +24,7 @@
                 </ul>
                 <?php } ?>
             </dd>
-            <?php }?>
-            
-           
-            
+            <?php }?> 
           </dl>
         </div>
       </div><!--panel-->

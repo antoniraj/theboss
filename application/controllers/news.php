@@ -34,14 +34,19 @@ class News extends CI_Controller {
             $data['title'] = $this->input->post('title');
             $data['news_type'] = $this->input->post('news_type');
             $data['summary'] = $this->input->post('summary');
+             $data['created_on'] = date('Y-m-d H:i:s');
             $data['created_by'] = $this->session->userdata('id');
             $data['status'] = 1;
             $result = $this->news_model->add_news($data);
-            $this->session->set_flashdata('message', 'News has beed saved successfully!');
+            
             if($channel==1)
+            {
+                $this->session->set_flashdata('message', 'CEO Message has been saved successfully!');
                 redirect('news/manage_ceo/', $result);
+            }
             else
             {
+                $this->session->set_flashdata('message', 'News has been saved successfully!');
                 redirect('news/manage/', $result); 
             } 
         }
@@ -50,7 +55,11 @@ class News extends CI_Controller {
         $data['title'] = '';
         $data['news_type'] = $channel;
         $data['summary'] = '';
-        $data['text'] = 'Add';
+        $data['text'] = 'Add News';
+        if($channel==1)
+        {
+            $data['text'] = 'Add CEO Message';
+        }       
        
         $this->load->view('layout/header');
         $this->load->view('news/news_add',$data);
@@ -98,13 +107,17 @@ class News extends CI_Controller {
             $data['summary'] = $this->input->post('summary');
               
             $result = $this->news_model->edit_news($id,$data);
-            $this->session->set_flashdata('message', 'News has beed saved successfully!');
-            if($channel==1)
+              if($channel==1)
+            {
+                $this->session->set_flashdata('message', 'CEO Message has been saved successfully!');
                 redirect('news/manage_ceo/', $result);
+            }
             else
             {
+                $this->session->set_flashdata('message', 'News has been saved successfully!');
                 redirect('news/manage/', $result); 
-            } 
+            }
+            
         }
 
         $results = $this->news_model->get_news_byid($id);
@@ -112,11 +125,74 @@ class News extends CI_Controller {
         $data['title'] = $results->title;
         $data['news_type'] = $results->news_type;
         $data['summary'] = $results->summary;
-        $data['text'] = 'Edit';
+        $data['view_count'] = $results->view_count;
+         $data['text'] = 'Edit News';
+        if($channel==1)
+        {
+            $data['text'] = 'Edit CEO Message';
+        }
 
      
         $this->load->view('layout/header');
         $this->load->view('news/news_add',$data);
+        $this->load->view('layout/footer');
+    }
+
+        /**
+     * Delete Location
+     * @return void
+     * @access public
+     */
+    public function delete($id=false,$channel=false) {
+        $this->db->delete('news', array('id' => $id)); 
+        if($channel==1)
+        {
+            $this->session->set_flashdata('message', 'CEO Message has been deleted successfully!');
+            redirect('news/manage_ceo/', $result);
+        }
+        else
+        {
+            $this->session->set_flashdata('message', 'News has been deleted successfully!');
+            redirect('news/manage/', $result); 
+        }
+            
+    }
+
+    /**
+     * view news News info
+     * @return void
+     * @access public
+     */
+    public function view($id=false,$channel=false) { 
+
+       
+        $results = $this->news_model->get_news_byid($id);
+        $data['id'] = $id;
+        $data['title'] = $results->title;
+        $data['news_type'] = $results->news_type;
+        $data['summary'] = $results->summary;
+        $data['created_on'] = $results->created_on;
+        $data['view_count'] = $results->view_count;
+
+        $data['text'] = 'View Event - '.$results->title;
+        $activity['title'] = 'View Event - '.$results->title;
+        $activity['description'] = 'View Event - '.$results->title;
+        if($channel==1)
+        {
+            $data['text'] = 'View CEO Message - '.$results->title;
+            $activity['title'] = 'View CEO Message - '.$results->title;
+            $activity['description'] = 'View CEO Message - '.$results->title;
+        }
+        $activity['viewed_on'] = date('Y-m-d H:i:s');
+        $activity['viewed_link'] = current_url();
+        $activity['user_id'] =$this->session->userdata('staff_id');
+
+       
+        $this->Activity_model->add($activity);
+        $this->news_model->add_view_count($id);
+     
+        $this->load->view('layout/header');
+        $this->load->view('news/news_view',$data);
         $this->load->view('layout/footer');
     }
 

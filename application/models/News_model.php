@@ -123,6 +123,50 @@ class News_model extends CI_Model {
         return $data;
        
     }
+
+    /**
+     * Edit News
+     * @return array data
+     * @param str $param array of login details
+     * @access public
+     */
+
+    public function add_view_count($id=false)
+    {
+        $sql = "UPDATE news SET view_count = view_count +1 WHERE id = ?";
+        $this->db->query($sql, array($id));
+    }
+
+    /**
+     * Edit News
+     * @return array data
+     * @param str $param array of login details
+     * @access public
+    */
+    public function search_event($search_word=false)
+    {             
+        $search = '%'.$search_word.'%';
+
+        $sql = 'SELECT * FROM news WHERE news_type = ? AND ( title LIKE ? OR summary LIKE ? )';
+        $query = $this->db->query($sql, array(2, $search, $search));
+        return $data = $query->result();
+    }
+
+    /**
+     * Edit News
+     * @return array data
+     * @param str $param array of login details
+     * @access public
+    */
+    public function search_event_ceo($search_word=false)
+    {             
+        $search = '%'.$search_word.'%';
+
+        $sql = 'SELECT * FROM news WHERE news_type = ? AND ( title LIKE ? OR summary LIKE ? )';
+        $query = $this->db->query($sql, array(1, $search, $search));
+        return $data = $query->result();
+    }
+    
     
    
 

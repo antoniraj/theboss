@@ -117,3 +117,152 @@ if ( ! function_exists('get_base_url') ) {
         return $url;
     }
 }
+
+function uploadImgFile($temName=false,$filePath=false,$fileName=false)
+{
+    if ( ! is_dir($filePath)) {
+        mkdir($filePath);
+    }
+   return move_uploaded_file($temName,$filePath."/".$fileName);
+}
+
+function change_filename($name)
+{
+    $temp = explode(".",$name);
+    return $newfilename = round(microtime(true)) . '.' . end($temp);
+}
+
+function sluggify($url)
+{
+    # Prep string with some basic normalization
+    $url = strtolower($url);
+    $url = strip_tags($url);
+    $url = stripslashes($url);
+    $url = html_entity_decode($url);
+
+    # Remove quotes (can't, etc.)
+    $url = str_replace('\'', '', $url);
+
+    # Replace non-alpha numeric with hyphens
+    $match = '/[^a-z0-9]+/';
+    $replace = '-';
+    $url = preg_replace($match, $replace, $url);
+
+    $url = trim($url, '-');
+
+    return $url;
+}
+
+
+/**
+ * Copy a file, or recursively copy a folder and its contents
+ * @author      Aidan Lister <aidan@php.net>
+ * @version     1.0.1
+ * @link        http://aidanlister.com/2004/04/recursively-copying-directories-in-php/
+ * @param       string   $source    Source path
+ * @param       string   $dest      Destination path
+ * @param       int      $permissions New folder creation permissions
+ * @return      bool     Returns true on success, false on failure
+ */
+function xcopy($source, $dest, $permissions = 0777)
+{
+    // Check for symlinks
+    if (is_link($source)) {
+        return symlink(readlink($source), $dest);
+    }
+
+    // Simple copy for a file
+    if (is_file($source)) {
+        return copy($source, $dest);
+    }
+
+    // Make destination directory
+    if (!is_dir($dest)) {
+        mkdir($dest, $permissions);
+    }
+
+    // Loop through the folder
+    $dir = dir($source);
+    while (false !== $entry = $dir->read()) {
+        // Skip pointers
+        if ($entry == '.' || $entry == '..') {
+            continue;
+        }
+
+        // Deep copy directories
+        xcopy("$source/$entry", "$dest/$entry", $permissions);
+    }
+
+    // Clean up
+    $dir->close();
+}
+
+function rrmdir($dir) { 
+   if (is_dir($dir)) { 
+     $objects = scandir($dir); 
+     foreach ($objects as $object) { 
+       if ($object != "." && $object != "..") { 
+         if (is_dir($dir."/".$object))
+           rrmdir($dir."/".$object);
+         else
+           unlink($dir."/".$object); 
+       } 
+     }
+     rmdir($dir); 
+   } 
+ }
+function url_title($str, $separator = 'dash', $lowercase = FALSE)
+ {
+  if ($separator == 'dash')
+  {
+   $search  = '_';
+   $replace = '-';
+  }
+  else
+  {
+   $search  = '-';
+   $replace = '_';
+  }
+
+  $trans = array(
+      '&\#\d+?;'    => '',
+      '&\S+?;'    => '',
+      '\s+'     => $replace,
+      '[^a-z0-9\-\._]'  => '',
+      $replace.'+'   => $replace,
+      $replace.'$'   => $replace,
+      '^'.$replace   => $replace,
+      '\.+$'     => ''
+       );
+
+  $str = strip_tags($str);
+
+  foreach ($trans as $key => $val)
+  {
+   $str = preg_replace("#".$key."#i", $val, $str);
+  }
+
+  if ($lowercase === TRUE)
+  {
+   $str = ucfirst(strtolower($str));
+  }
+
+  return trim(stripslashes($str));
+ }
+
+ function gen_file_url($urls,$id)
+ {
+    $ex = explode('/',$urls);
+
+    $count = count($ex);
+    $redir_url = '';
+    foreach ($ex as $key => $value) {
+        $redir_url .= '<a href="'.base_url().'Departmentfiles/viewfiles/'.encryptData($value).'/'.$id.'">'.ucfirst($value).'</a>';
+        if($key <($count-1))
+        {
+            $redir_url .= '  &nbsp;> &nbsp;';
+        }
+    }
+
+    return $redir_url;
+ }

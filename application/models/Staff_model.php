@@ -30,7 +30,7 @@ class Staff_model extends CI_Model {
      * @access public
      */
 
-    public function add_location($data=false)
+    public function add_staff($data=false)
     {
         $table_name = $this->table_name;
         $result = $this->db->insert($table_name, $data);
@@ -48,7 +48,7 @@ class Staff_model extends CI_Model {
      * @access public
      */
 
-    public function edit_news($id=false,$data=false)
+    public function edit_staff($id=false,$data=false)
     {
         $table_name = $this->table_name;
         $this->db->where('id', $id);
@@ -89,7 +89,7 @@ class Staff_model extends CI_Model {
      * @param $id as int
      * @return array data
      * */
-    public function get_news_byid($id=false) {
+    public function get_staff_byid($id=false) {
         $table_name = $this->table_name;
         $data = [];
 
@@ -103,6 +103,71 @@ class Staff_model extends CI_Model {
 
         return $data;
        
+    }
+
+
+        /**
+    * Inserts Absence  details
+    * @access public
+    * @param $data array data
+    * @return boolean true details added successfully
+    */
+    public function add_user($data) {
+        $table_name = 'users';
+        $result = $this->db->insert($table_name, $data);
+        if ($result) {
+            return $this->db->insert_id();
+        } else {
+            return false;
+        }
+    }
+
+        /**
+     * Get All CEO Message
+     * @access public
+     * @param $id as int
+     * @return array data
+     * */
+    public function get_staff_id($id=false) {
+        $table_name = $this->table_name;
+        $data = [];
+
+        $this->db->select('*')
+                ->from($table_name)
+                ->where(array('user_id' => $id));
+       $result = $this->db->get();
+        if (!empty($result)) {
+            $data = $result->row();
+        }
+
+        return (isset($data->id))?$data->id:0;
+       
+    }
+
+       /**
+     * Get All CEO Message
+     * @access public
+     * @param $id as int
+     * @return array data
+     * */
+    public function get_staff_files($id=false) {
+       
+        $this->db->select("*");
+        $this->db->from('department_files');        
+        $this->db->where_in('assign_to',$id);    
+        $this->db->limit(0,1);
+        $query = $this->db->get();
+        
+        $data = $query->result();
+
+      if(count($data)==0)
+      {
+        return 0;
+      } 
+      else
+      {
+        return $data[0]->file_path;
+      }    
     }
     
    

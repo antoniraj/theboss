@@ -104,6 +104,22 @@ class Location_model extends CI_Model {
         return $data;
        
     }
+
+    /**
+     * Edit News
+     * @return array data
+     * @param str $param array of login details
+     * @access public
+    */
+    public function search($search_word=false)
+    {             
+        $search = '%'.$search_word.'%';
+
+        $sql = 'SELECT * FROM location WHERE title LIKE ? OR location LIKE ? OR office LIKE ? OR fax LIKE ?';
+        $query = $this->db->query($sql, array($search, $search,$search, $search));
+        return $data = $query->result();
+    }
+    
     
    
 

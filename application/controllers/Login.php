@@ -10,6 +10,7 @@ class Login extends CI_Controller{
     public function __construct() {
         parent::__construct();    
         $this->load->model('login_model');
+        $this->load->model('staff_model');
     }
 
 
@@ -32,7 +33,8 @@ class Login extends CI_Controller{
                 $session_data['id'] = $result->id;
                 $session_data['d_name'] = $result->d_name;                
                 $session_data['email'] = $result->email;              
-                $session_data['user_type'] = $result->user_type;              
+                $session_data['user_type'] = $result->user_type;
+                $session_data['staff_id'] = $this->staff_model->get_staff_id($result->id);                    
                 $this->session->set_userdata($session_data);
                 
                 // Check whether user Agent or Clerk
@@ -45,8 +47,7 @@ class Login extends CI_Controller{
             } else {
                 $this->session->set_flashdata('error', $this->lang->line('login_invalid'));
             }
-            echo 'dddd';
-
+            redirect('login');
     }
     
     /* Show the login page */

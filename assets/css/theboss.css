@@ -117,6 +117,7 @@ body{
 .theboss-nav .navbar-form .form-control{
   background-color: #c73529;
    border: 1px solid #c73529;
+   color:#fff;
 }
 
 .theboss-nav .navbar-right.navbar-nav > li > a:focus, .theboss-nav .navbar-right.navbar-nav > li > a:hover, .theboss-nav .navbar-right.navbar-nav > li > a:focus i, .theboss-nav .navbar-right.navbar-nav > li > a:hover i{

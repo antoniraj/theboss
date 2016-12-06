@@ -8,27 +8,31 @@
   $header_css = array(
       'css/bootstrap.min',
       'css/theboss',     
-      'css/font-awesome.min',
+      'css/font-awesome.min',     
      
   );
   add_css_file($header_css);
 ?>
 
-
+<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/elfinder.min.css" />
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
-<?php 
-   $header_js = array(
-            'js/jquery.min',
-            'js/bootstrap.min',
-            'js/app',             
-        );
-        add_js_file($header_js);
-?>
-<script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.12.3.js">
-  </script>
-  <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js">
-  </script>
-  <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/themes/smoothness/jquery-ui.css" />
+
+  <script src="//code.jquery.com/jquery-1.12.3.js"></script>
+  <script src="<?php echo base_url();?>/assets/js/bootstrap.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" ></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js"></script>
+  <?php 
+     $header_js = array(
+              'js/app',
+              'js/jquery.maskedinput',
+              'js/elfinder.min',              
+          );
+          add_js_file($header_js);
+  ?>
 </head>
 <body>
   <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
@@ -44,15 +48,15 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li>
+               <!--  <li>
                     <a href="#"><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i></a>
-                </li>
+                </li> -->
                 <li>
-                    <a href="#"><i class="fa fa-question-circle fa-2x" aria-hidden="true"></i></a>
+                    <a href="<?php echo base_url();?>login/logout"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i></a>
                 </li>
-                <li>
+               <!--  <li>
                     <a href="#"><i class="fa fa-cogs fa-2x" aria-hidden="true"></i> Settings</a>
-                </li>
+                </li> -->
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -62,51 +66,61 @@
 <div class="container">
   <nav class="navbar navbar-default theboss-nav">
     <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-    <!--   <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">Brand</a>
-      </div> -->
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li><a href="#"><i class="fa fa-bullseye" aria-hidden="true"></i>
+          <li><a href="<?php echo base_url()?>Departmentfiles/deplist"><i class="fa fa-bullseye" aria-hidden="true"></i>
             Departments</a></li>
           <li><a href="<?php echo base_url();?>/location/manage">
             <i class="fa fa-globe" aria-hidden="true"></i>
             Locations</a></li>
-            <li><a href="<?php echo base_url();?>/staff/manage">
-            <i class="fa fa-users" aria-hidden="true"></i>
-            Staff</a></li>
+            <?php if($this->session->userdata('user_type')==1) {?>
+              <li><a href="<?php echo base_url();?>/staff/manage">
+              <i class="fa fa-users" aria-hidden="true"></i>
+              Staff</a></li>
+            <?php }else{ ?>
+            
+              <li><a href="<?php echo base_url();?>/staff/viewstaff">
+              <i class="fa fa-users" aria-hidden="true"></i>
+              Staff</a></li>
+            <?php } ?>
+
           <li><a href="<?php echo base_url();?>/news/manage">
             <i class="fa fa-calendar" aria-hidden="true"></i>
             Events</a></li>
           <li><a href="<?php echo base_url();?>/news/manage_ceo">
             <i class="fa fa-comments" aria-hidden="true"></i>
             Messages From the CEO</a></li>
+            <?php if($this->session->userdata('user_type')==1) {?>
+          <li><a href="<?php echo base_url();?>/department/manage_cat">
+            <i class="fa fa-list-alt" aria-hidden="true"></i>
+            Categories</a></li>
+            <?php } ?>
+
         </ul>
-        <form class="navbar-form navbar-left" style="margin-top:1%;">
+        <form method="post" action="<?php echo base_url();?>/search" class="navbar-form navbar-left" style="margin-top:1%;">
           <div class="input-group">
-            <input class="form-control">
+            <input class="form-control" name="search">
             <div class="input-group-btn">
-              <button type="button" class="btn btn-danger">
+              <button type="submit" class="btn btn-danger">
                 <span class="glyphicon glyphicon-search"></span>
               </button>
             </div>
           </div>
           
         </form>
+        <?php
+        if($this->session->userdata('d_name')=='')
+        {
+          redirect('login/logout'); 
+        }
+        ?>
         <ul class="nav navbar-nav navbar-right" style="margin-top:1%;">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $this->session->userdata('d_name'); ?><span class="caret"></span></a>
+            <a href="<?php echo base_url()?>staff/profile/<?php echo $this->session->userdata('staff_id')?>" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $this->session->userdata('d_name'); ?><span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Profile</a></li>
+              <li><a href="<?php echo base_url()?>staff/profile/<?php echo $this->session->userdata('staff_id')?>">Profile</a></li>
               <li><a href="#">Change Password</a></li>
               <li><a href="<?php echo base_url();?>login/logout">Logout</a></li>
              <!--  <li role="separator" class="divider"></li>
@@ -121,22 +135,5 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-4">
-      <div class="panel panel-danger">
-        <div class="panel-heading">
-          <h3 class="panel-title">Quick Links</h3>
-        </div>
-        <div class="panel-body">
-          <ul class="quick_links">
-            <li><a href="https://staffingspecifix.tsheets.com/page/login" target="_blank">Enter Your Hours</a></li>
-           <li><a href="https://www.epaystubaccess.com/acctmgr.asp?pgid=browser&mdid=scr1&verid=eng" target="_blank">View Your Paystub(s)</a></li>
-          <li><a href="https://staffingspecifixinc.igloocommunities.com/events/employee_vacations" target="_blank">Request vacation</a></li>
-          <li><a href="#" target="_blank">Submit expenses</a></li>
-          <li><a href="#" target="_blank">Update your profile</a></li>
-          <li><a href="https://gordg.aviontego.com/RDWeb/Pages/en-US/login.aspx?ReturnUrl=default.aspx" target="_blank">Avionte</a></li>
-          
-          </ul>
-        </div>
-      </div><!--panel-->
-    </div>
+   <?php echo $this->quicklinks->show_admin(); ?>
     <div class="col-md-8">
